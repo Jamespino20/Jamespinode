@@ -17,7 +17,10 @@ export function SiteHeader() {
         aria-label="Primary"
         className="mx-auto flex max-w-4xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4"
       >
-        <Link href="/" className="text-lg font-bold tracking-tight">
+        <Link
+          href="/"
+          className="rounded-md bg-[var(--jbe-olive)] px-2 py-0.5 text-lg font-bold tracking-tight text-white dark:text-[var(--jbe-charcoal)]"
+        >
           JBE
         </Link>
         <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">

@@ -29,8 +29,10 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
             key={c}
             onClick={() => setActive(c)}
             aria-pressed={active === c}
-            className={`rounded-full border px-3 py-1 text-sm ${
-              active === c ? "bg-[var(--jbe-olive)] text-white" : ""
+            className={`rounded-full border px-3 py-1 text-sm transition-colors ${
+              active === c
+                ? "border-[var(--jbe-olive)] bg-[var(--jbe-olive)] text-white dark:text-[var(--jbe-charcoal)]"
+                : "border-[var(--jbe-bark)]/50 hover:border-[var(--jbe-olive)] hover:text-[var(--jbe-moss)]"
             }`}
           >
             {c}
