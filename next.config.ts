@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    // String form: required for Turbopack (functions can't cross into Rust).
+    // Strips YAML frontmatter so it never renders; gray-matter reads it separately.
+    remarkPlugins: ["remark-frontmatter"],
+  },
+});
 
 export default withMDX(nextConfig);

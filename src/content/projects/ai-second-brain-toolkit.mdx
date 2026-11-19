@@ -1,0 +1,34 @@
+---
+title: "AI Second-Brain Toolkit (Contributor)"
+summary: "Merged contributor — fail-closed personal memory engine for Obsidian + AI agents."
+category: ["Open Source", "AI", "Developer Tools"]
+technologies: ["Python", "SQLite", "MCP"]
+status: "completed"
+featured: true
+role: "Open-source contributor"
+links:
+  repository: "https://github.com/ahronvincegingco/ai-second-brain-toolkit"
+  documentation: "https://github.com/ahronvincegingco/ai-second-brain-toolkit/pull/8"
+highlights: ["PR #8 merged upstream", "Security-hardening review", "Positive-path recall proven on synthetic fixtures"]
+challenges: ["Untrusted transcript content", "Grant-replay and TOCTOU surface"]
+solutions: ["Fail-closed SHA-256 grant guard", "Disposable synthetic fixtures for testing"]
+lessonsLearned: ["No personal vault data in tests — synthetic fixtures only"]
+---
+
+# AI Second-Brain Toolkit — Contribution
+
+Open-source contribution to a fail-closed personal memory engine for Obsidian
+and AI agents (`/brain-save` to staging, SHA-256 grant guard, canonical vault,
+`/brain-recall`, local MCP).
+
+## What I did
+
+- Security-hardening review pass over the grant and recall surface.
+- Positive-path recall proven on disposable synthetic fixtures — search and
+  read returned the expected decision note with no personal vault touched.
+- PR #8 merged upstream.
+
+## Still open upstream
+
+Adversarial pass (grant-replay, TOCTOU, staging races) and follow-up PRs per
+the maintainer's call for outside-perspective UX testing.

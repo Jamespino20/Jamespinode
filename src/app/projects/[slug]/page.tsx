@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/content";
 import { StatusBadge } from "@/components/status-badge";
@@ -19,15 +20,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectDetailPage({
+export default function ProjectDetailPage({
   params,
 }: PageProps<"/projects/[slug]">) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
-  if (!project) notFound();
-
-  const Content = (await import(`@/content/projects/${slug}.mdx`)).default;
-
   return (
     <article>
       <p className="text-sm">
@@ -35,6 +30,26 @@ export default async function ProjectDetailPage({
           ← All projects
         </Link>
       </p>
+      <Suspense fallback={<p>Loading project…</p>}>
+        <ProjectContent params={params} />
+      </Suspense>
+    </article>
+  );
+}
+
+async function ProjectContent({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) notFound();
+
+  const Content = (await import(`@/content/projects/${slug}.mdx`)).default;
+
+  return (
+    <>
       <h1 className="mt-2">{project.title}</h1>
       <p className="mt-2 max-w-2xl">{project.summary}</p>
       <p className="mt-3 flex flex-wrap items-center gap-2 text-xs">
@@ -50,7 +65,7 @@ export default async function ProjectDetailPage({
           {project.technologies.join(" · ")}
         </p>
       )}
-      <div className="mt-8 max-w-2xl">
+      <div className="prose mt-8 max-w-2xl dark:prose-invert">
         <Content />
       </div>
       {(project.links.repository ?? project.links.demo) && (
@@ -67,6 +82,6 @@ export default async function ProjectDetailPage({
           )}
         </p>
       )}
-    </article>
+    </>
   );
 }

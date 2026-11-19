@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+# playwright
+/test-results
+/playwright-report
+/.playwright-browsers
+
 # next.js
 /.next/
 /out/
@@ -40,4 +45,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# agent MD files
 AGENTS.md
+SYSTEMFLOWS.md
