@@ -2,10 +2,21 @@ import Link from "next/link";
 import type { Project } from "@/lib/content";
 import { StatusBadge } from "./status-badge";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const num = String(index + 1).padStart(2, "0");
+  const byline = `${num} / ${project.year ?? "—"} · ${project.kind ?? project.category[0] ?? "Project"}`;
   return (
     <article className="rounded-xl border border-[var(--jbe-bark)]/30 bg-[var(--jbe-card)] p-5 shadow-sm transition-colors hover:border-[var(--jbe-olive)]/70">
-      <h3 className="text-lg font-semibold">
+      <p className="text-xs font-bold tracking-widest text-[var(--jbe-clay)]">
+        {byline}
+      </p>
+      <h3 className="mt-1 text-lg font-semibold">
         <Link
           href={`/projects/${project.slug}`}
           className="underline-offset-4 hover:text-[var(--jbe-moss)] hover:underline"

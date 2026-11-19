@@ -47,3 +47,13 @@ export function getProjectSlugs(): string[] {
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
+
+export function getAllTechnologies(): string[] {
+  const seen = new Set<string>();
+  for (const p of getAllProjects()) {
+    for (const t of p.technologies) {
+      if (!seen.has(t)) seen.add(t);
+    }
+  }
+  return [...seen];
+}

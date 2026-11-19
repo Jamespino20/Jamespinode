@@ -14,6 +14,8 @@ export const ProjectFrontmatterSchema = z.object({
   technologies: z.array(z.string()).default([]),
   status: ProjectStatusSchema,
   featured: z.boolean().default(false),
+  year: z.string().optional(),
+  kind: z.string().optional(),
   timeline: z
     .object({ start: z.string().optional(), end: z.string().optional() })
     .optional(),

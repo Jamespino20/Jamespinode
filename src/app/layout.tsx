@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -32,6 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var t="system";try{var s=JSON.parse(localStorage.getItem("jbe-theme")||"null");t=(s&&s.state&&s.state.theme)||s.theme||"system";}catch(e){}var d=t==="dark"||(t==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);}catch(e){}})();`}
+        </Script>
         <ThemeEffect />
         <SiteHeader />
         <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
