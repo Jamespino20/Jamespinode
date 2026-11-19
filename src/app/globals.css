@@ -1,1 +1,84 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-olive: var(--jbe-olive);
+  --color-cream: var(--jbe-cream);
+  --color-charcoal: var(--jbe-charcoal);
+  --color-bark: var(--jbe-bark);
+  --color-parchment: var(--jbe-parchment);
+}
+
+:root {
+  --jbe-olive: #6b7245;
+  --jbe-cream: #f4efe4;
+  --jbe-charcoal: #232624;
+  --jbe-bark: #6f5d4d;
+  --jbe-parchment: #faf7ef;
+  --background: var(--jbe-parchment);
+  --foreground: var(--jbe-charcoal);
+}
+
+.dark {
+  --background: var(--jbe-charcoal);
+  --foreground: var(--jbe-cream);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 650;
+  margin-top: 0.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--jbe-olive);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+article h1,
+article h2,
+section h1,
+section h2 {
+  text-wrap: balance;
+}
+
+article p,
+article li,
+section p,
+section li {
+  max-width: 65ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
